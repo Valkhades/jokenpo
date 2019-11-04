@@ -1,0 +1,47 @@
+<!Doctype=html>
+    <html>
+
+    <head>
+        <title> RPS </title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div class="site">
+            <header>
+                <h1>Rock-Paper-Scissor with a user interface.</h1>
+                <h3>The first one to reach 5 points wins.</h3>
+                <p class="return"><a href="index.html">Return</a></p>
+            </header>
+            <div class="button_area">
+                <div class="rpsButtons">
+                    <div class="imgAndButton">
+                        <img src="img/rock.png" />
+                        <button id="rock" onclick=rpsSelection(this.id)>Rock</button>
+                    </div>
+                    <div class="imgAndButton">
+                        <img src="img/paper.png" />
+                        <button id="paper" onclick=rpsSelection(this.id)>Paper</button>
+                    </div>
+                    <div class="imgAndButton">
+                        <img src="img/scissor.png" />
+                        <button id="scissor" onclick=rpsSelection(this.id)>Scissor</button>
+                    </div>
+                </div>
+                <div class="gameOver">
+                    <p id="final_result"></p>
+                    <p>Click the button below for a new game.</p>
+                    <button onclick=newGame()>New Game</button>
+                </div>
+            </div>
+            <div class="score_area">
+                <p id="round_result"></p>
+                <p>Player Score:<span id="player_Score"></span></p>
+                <p>Computer Score:<span id="computer_Score"></span></p>
+            </div>
+
+            <script src="main.js"></script>
+    </body>
+
+    </html>

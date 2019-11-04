@@ -69,15 +69,78 @@ function game() {
         playRound(playerSelection, computerSelection);
     }
 
-        if (playerScore == computerScore) {
-            alert("It's a draw! Both players scored " + playerScore);
-        }
-        if (playerScore > computerScore) {
-            alert("You did " + playerScore + " points, and the computer did " + computerScore + " you won!");
-        }
-        if (playerScore < computerScore) {
-            alert("You did " + playerScore + " points, and the computer did " + computerScore + " you lose!");
-        }
+    if (playerScore == computerScore) {
+        alert("It's a draw! Both players scored " + playerScore);
+    }
+    if (playerScore > computerScore) {
+        alert("You did " + playerScore + " points, and the computer did " + computerScore + " you won!");
+    }
+    if (playerScore < computerScore) {
+        alert("You did " + playerScore + " points, and the computer did " + computerScore + " you lose!");
+    }
     playerScore = 0;
     computerScore = 0;
 }
+
+
+
+/* Down here for the UI code. */
+
+function rpsSelection(arg) {
+    playerSelection = arg;
+    computerPlay();
+    playRoundUI(playerSelection, computerSelection);
+}
+
+function newGame() {
+    playerScore = 0;
+    computerScore = 0;
+    document.querySelector("#round_result").textContent = "";
+    document.querySelector("#computer_Score").textContent = computerScore;
+    document.querySelector("#player_Score").textContent = playerScore;
+    document.querySelector(".rpsButtons").style.display = "grid";
+    document.querySelector(".gameOver").style.display = "none";
+
+}
+
+function playRoundUI(playerSelection, computerSelection) {
+    let endgame = false;
+    if (endgame === false) {
+
+        if (playerSelection === computerSelection) {
+            document.querySelector("#round_result").textContent = "It's a draw! Both choose " + playerSelection + "s";
+        }
+        else if ((playerSelection === "rock" && computerSelection === "scissor") ||
+            (playerSelection === "paper" && computerSelection === "rock") ||
+            (playerSelection === "scissor" && computerSelection === "paper")) {
+            document.querySelector("#round_result").textContent = playerSelection + " beats " + computerSelection + " you won this round!";
+            playerScore++;
+            document.querySelector("#player_Score").textContent = playerScore;
+        }
+        if ((playerSelection === "rock" && computerSelection === "paper") ||
+            (playerSelection === "paper" && computerSelection === "scissor") ||
+            (playerSelection === "scissor" && computerSelection === "rock")) {
+            document.querySelector("#round_result").textContent = playerSelection + " is beaten by " + computerSelection + " you lost this round!";
+            computerScore++;
+            document.querySelector("#computer_Score").textContent = computerScore;
+        }
+        if (playerScore === 5 || computerScore === 5) {
+            endgame = true;
+        }
+    }
+    if (endgame === true) {
+        document.querySelector(".rpsButtons").style.display = "none";
+        document.querySelector(".gameOver").style.display = "block";
+        if (playerScore === 5) {
+            document.querySelector("#final_result").textContent = "Congratulations! You won!";
+        }
+        if (computerScore === 5) {
+            document.querySelector("#final_result").textContent = "Too bad! You lost!";
+        }
+    }
+
+
+
+}
+
+
